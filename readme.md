@@ -3,4 +3,4 @@ python --version    3.10.2
 
 py convert.py  报错
 
-fontforge -script convert.py
+fontforge -script convert2.py
