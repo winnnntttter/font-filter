@@ -12,7 +12,7 @@ used_chars = "".join(set(used_chars))
 used_unicodes = [ord(char) for char in used_chars]
 
 font = fontforge.open(input_file)
-print(font.familyname)
+print("fontFamily:", font.familyname)
 for char_name in font:
     glyph = font[char_name]
     unicode = glyph.unicode
