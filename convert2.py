@@ -1,34 +1,53 @@
+# from fontforge import *
+import fontforge
 import os
-# from fontTools.ttLib import TTFont
 
-input_file = "src/zkhl.TTF"  # 全量字体
-output_file = "zkhl.ttf"  # 基础字符集
-
-used_chars = "已经超棒啦！继续保持活跃，发布职位、及时处理简历、参加招聘会、丰富企业简介都能进一步提升你的招聘效果。拥有一个正式清晰的Logo代表这个企业有一个好的形象，看起来也会更正规，求职者会更加信任。丰富企业简介，让求职者更深入了解你的公司。多添加福利标签，会吸引更多求职者哦。排名优先、职位一键刷新，让你的职位排在众多竞争者的前面，让更优秀的人才第一眼看到你的职位。更多会员功能请点击链接降低任职要求，提高薪资福利也是拉拢人才的必要手段，谁愿意看要求又多薪资又少的职位呢？职位收到的简历少，很有可能是职位描述不清晰，导致人才无法判断自己适不适合这个职位。尝试把岗位职责、任职要求、薪资福利写清楚再试试呢！每周每个职位会推荐10封简历，按照职位精准匹配人才并推送简历，这样还会发愁收不到简历？办个国家大学生就业服务平台会员即刻拥有。求职人才往往比较注重自己未来的工作环境，尝试把公司简介描述的详细一些，把公司最好的一面展现给大家会使你招聘人才事半功倍。简历处理速度慢很容易错过优秀的求职者，建议在招聘量大时早晚各登录一次国家大学生就业服务平台，查看最新投递来的简历并及时给予反馈。求职者更青睐于处理简历速度快的企业，不浪费彼此时间，给对方更好的选择余地。养成每天登录国家大学生就业服务平台的习惯，查看最新简历；完善职位信息；加入网络招聘会，招聘人才也很简单。"  # 读取用到的字符
-# 去重
-used_chars = "".join(set(used_chars))
-
-# 读取用到字的Unicode，通过ord()函数转一下
+# 指定要提取的字符
+used_chars = "12345你我他"  # 读取用到的字符
+# 读取用到的字表，通过ord()函数转一下
 used_unicodes = [ord(char) for char in used_chars]
 
-font = fontforge.open(input_file)
+# 加载字体文件
+font = fontforge.open("src/AlibabaPuHuiTi-3-55-Regular.ttf")
 print(font.familyname)
-for char_name in font:
-    glyph = font[char_name]
-    unicode = glyph.unicode
-    if unicode in used_unicodes:
-        # 保留的字符
-        pass
-    else:
-        # 这里假设单个glyph没有被多个unicode使用，如果需要相应处理，过滤一下
-        glyph.clear()
 
-font.generate(output_file)
+# 创建一个新字体文件
+new_font = fontforge.font()
 
-# 转成woff和woff2
-# ttf_font = TTFont(output_file)
-# ttf_font.flavor = "woff"
-# ttf_font.save("zkhl.woff")
-# ttf_font.flavor = "woff2"
-# ttf_font.save("zkhl.woff2")
-font.close()
+# 将要提取的字符添加到新字体文件中
+for unicode in used_unicodes:
+    try:
+        print(f"Extracting character '{chr(unicode)}' (unicode: {unicode})")
+        # font 中 Unicode 为 unicode 的字符
+        glyph = font[unicode]
+        print(glyph)
+        new_font.selection.select(("more", None), glyph)
+        new_font.copy()
+    except TypeError:
+        print(f"Skipping character '{char}' because it does not exist in the font.")
+
+# 将新字体文件保存为ttf、woff和woff2格式
+new_font.generate("AlibabaPuHuiTi-3-55-Regular-extracted.ttf")
+os.system("pyftsubset AlibabaPuHuiTi-3-55-Regular-extracted.ttf --output-file=AlibabaPuHuiTi-3-55-Regular-extracted.woff --flavor=woff --with-zopfli")
+os.system("pyftsubset AlibabaPuHuiTi-3-55-Regular-extracted.ttf --output-file=AlibabaPuHuiTi-3-55-Regular-extracted.woff2 --flavor=woff2 --with-zopfli")
+
+
+# 暂时不能用
+
+# Alibaba PuHuiTi 3.0 55 Regular
+# Extracting character '1' (unicode: 49)
+# <Glyph one in font AlibabaPuHuiTi_3_55_Regular>
+# Extracting character '2' (unicode: 50)
+# <Glyph two in font AlibabaPuHuiTi_3_55_Regular>
+# Extracting character '3' (unicode: 51)
+# <Glyph three in font AlibabaPuHuiTi_3_55_Regular>
+# Extracting character '4' (unicode: 52)
+# <Glyph four in font AlibabaPuHuiTi_3_55_Regular>
+# Extracting character '5' (unicode: 53)
+# <Glyph five in font AlibabaPuHuiTi_3_55_Regular>
+# Extracting character '你' (unicode: 20320)
+# <Glyph uni4F60 in font AlibabaPuHuiTi_3_55_Regular>
+# Traceback (most recent call last):
+#   File "E:\test\字体选取指定\convert.py", line 24, in <module>
+#     new_font.selection.select(("more", None), glyph)
+# ValueError: Encoding is out of range

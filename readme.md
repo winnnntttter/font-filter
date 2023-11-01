@@ -5,5 +5,5 @@ py convert.py  报错
 
 
 直接用下面两个
-fontforge -script convert2.py
+fontforge -script filter.py
 python toWoff.py
