@@ -1,7 +1,7 @@
 from fontTools.ttLib import TTFont
-ttf_font = TTFont("zkhl.ttf")
+ttf_font = TTFont("./dist/zkhl.ttf")
 
 ttf_font.flavor = "woff"
-ttf_font.save("zkhl.woff")
+ttf_font.save("./dist/zkhl.woff")
 ttf_font.flavor = "woff2"
-ttf_font.save("zkhl.woff2")
+ttf_font.save("./dist/zkhl.woff2")
