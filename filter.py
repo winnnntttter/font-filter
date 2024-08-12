@@ -1,10 +1,14 @@
 import os
 # from fontTools.ttLib import TTFont
 
-input_file = "src/AlibabaPuHuiTi-3-85-Bold.ttf"  # 全量字体
-output_file = "dist/ali-bold.ttf"  # 基础字符集
+input_file = "src/SourceHanSerifCN-Regular.ttf"  # 全量字体
+output_file = "dist/SourceHanSerifCN-Regular.ttf"  # 基础字符集
 
-used_chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:'\"!@#$%^&*?,.;"  # 读取用到的字符
+used_chars = "教育部供需对接就业育人项目"  # 读取用到的字符
+
+# unicode \u2F6C或者\u2F6D的也保留
+# used_chars += "\u2F6C\u319F"
+
 # 去重
 used_chars = "".join(set(used_chars))
 
@@ -16,7 +20,9 @@ print("fontFamily:", font.familyname)
 for char_name in font:
     glyph = font[char_name]
     unicode = glyph.unicode
-    if unicode in used_unicodes:
+    alt_unicodes = [alt[0] for alt in glyph.altuni] if glyph.altuni else []
+    all_unicodes = [unicode] + alt_unicodes
+    if any(unicode in used_unicodes for unicode in all_unicodes):
         # 保留的字符
         pass
     else:
@@ -32,3 +38,11 @@ font.generate(output_file)
 # ttf_font.flavor = "woff2"
 # ttf_font.save("./dist/zkhl.woff2")
 font.close()
+
+
+
+""" Unicode字符\u2F6C和\u76EE分别对应的是“⽬”和“目”。其中：
+
+\u2F6C 是一个康熙部首字符，表示“目”部首。
+\u76EE 是一个常用汉字，表示“目”。
+在某些字体（如思源宋体）中，这两个字符可能会被设计成相同或非常相似的形状，因为它们在视觉上代表相同的概念，即“目”。这种设计选择是为了在字体中保持一致性和美观。 """
