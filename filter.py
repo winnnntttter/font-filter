@@ -19,9 +19,9 @@ import argparse
 
 def parse_args():
     parser = argparse.ArgumentParser(description='生成字体子集')
-    parser.add_argument('--input', '-i', type=str, default="src/ysbth.ttf",
+    parser.add_argument('--input', '-i', type=str, default="src/NotoSerifSC-Black.ttf",
                         help='输入字体文件路径')
-    parser.add_argument('--output', '-o', type=str, default="dist/ysbth.ttf",
+    parser.add_argument('--output', '-o', type=str, default="dist/NotoSerifSC-Black.ttf",
                         help='输出字体文件路径')
     parser.add_argument('--chars', '-c', type=str, default=None,
                         help='要包含的字符，直接指定字符串')
@@ -51,7 +51,8 @@ elif args.chars_file:
         used_chars = "如何结合国家战略及区域发展选专业？"  # 使用默认字符
 else:
     # 如果没有指定，使用默认字符
-    used_chars = "如何结合国家战略及区域发展选专业？"
+    # used_chars = "如何结合国家战略及区域发展选专业？"
+    used_chars = "教育部供需对接就业育人项目"
 
 # 如果需要保留特定Unicode值的字符，可以这样添加
 # 例如，康熙部首"目"(U+2F6C)
