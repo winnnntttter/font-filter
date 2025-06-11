@@ -1,10 +1,10 @@
 import os
 # from fontTools.ttLib import TTFont
 
-input_file = "src/NotoSerifSC-Black.ttf"  # 全量字体
-output_file = "dist/NotoSerifSC-Black.ttf"  # 基础字符集
+input_file = "src/ysbth.ttf"  # 全量字体
+output_file = "dist/ysbth.ttf"  # 基础字符集
 
-used_chars = "教育部供需对接就业育人项目"  # 读取用到的字符
+used_chars = "如何结合国家战略及区域发展选专业？"  # 读取用到的字符
 
 # unicode \u2F6C或者\u2F6D的也保留
 # used_chars += "\u2F6C\u319F"
