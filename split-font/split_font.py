@@ -12,7 +12,7 @@ import json
 input_font = "src/ysbth.ttf"  # 输入字体文件
 output_dir = "dist"           # 输出目录
 common_chars_file = "常用字符3500.txt"  # 常用字符文件
-font_prefix = "ysbth-font"          # 输出字体文件名前缀
+font_prefix = "ysbth-font"    # 输出字体文件名前缀
 target_count = 10             # 目标分割数量
 target_size_kb = 100          # 目标每个文件大小(KB)
 
@@ -35,34 +35,33 @@ for table in font['cmap'].tables:
 
 print(f"字体中共有 {len(all_unicodes)} 个字符")
 
-# 将常用字符转换为unicode编码
-common_unicodes = [ord(char) for char in common_chars]
+# 将所有字符分类
+ascii_unicodes = [u for u in all_unicodes if u <= 0x007F]  # ASCII字符（0-127）
+common_unicodes = [ord(char) for char in common_chars if ord(char) > 0x007F]
 common_unicodes = [u for u in common_unicodes if u in all_unicodes]
+other_unicodes = [u for u in all_unicodes if u > 0x007F and u not in common_unicodes]
 
-# 剩余的字符
-other_unicodes = [u for u in all_unicodes if u not in common_unicodes]
-
-print(f"常用字符: {len(common_unicodes)} 个")
+print(f"ASCII字符: {len(ascii_unicodes)} 个")
+print(f"常用汉字: {len(common_unicodes)} 个")
 print(f"其他字符: {len(other_unicodes)} 个")
 
-# 大致估算每个文件应包含多少字符
-total_chars = len(all_unicodes)
-common_ratio = 0.6  # 常用字符占比，可以调整
-common_fonts_count = math.ceil(target_count * 0.3)  # 常用字符分配到前30%的文件
-chars_per_common_font = math.ceil(len(common_unicodes) / common_fonts_count)
-chars_per_other_font = math.ceil(len(other_unicodes) / (target_count - common_fonts_count))
+# 准备分块
+chunks = []
 
-# 分割常用字符和其他字符
-common_chunks = []
+# 第1块：所有ASCII字符
+chunks.append(ascii_unicodes)
+
+# 剩余的块：先常用汉字，再其他汉字
+chars_per_common_font = math.ceil(len(common_unicodes) / (target_count * 0.6 - 1))  # 减1是因为第一块已经分配给ASCII
+chars_per_other_font = math.ceil(len(other_unicodes) / (target_count * 0.4))
+
+# 分割常用字符
 for i in range(0, len(common_unicodes), chars_per_common_font):
-    common_chunks.append(common_unicodes[i:i + chars_per_common_font])
+    chunks.append(common_unicodes[i:i + chars_per_common_font])
 
-other_chunks = []
+# 分割其他字符
 for i in range(0, len(other_unicodes), chars_per_other_font):
-    other_chunks.append(other_unicodes[i:i + chars_per_other_font])
-
-# 合并分组形成最终的字符块列表
-chunks = common_chunks + other_chunks
+    chunks.append(other_unicodes[i:i + chars_per_other_font])
 
 # 限制块数量不超过目标数量
 if len(chunks) > target_count:

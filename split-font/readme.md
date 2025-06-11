@@ -1,0 +1,1 @@
+cd e:\test\字体选取指定\split-font && python split.py
