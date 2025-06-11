@@ -1,8 +1,8 @@
 import os
 # from fontTools.ttLib import TTFont
 
-input_file = "src/SourceHanSerifCN-Regular.ttf"  # 全量字体
-output_file = "dist/SourceHanSerifCN-Regular.ttf"  # 基础字符集
+input_file = "src/NotoSerifSC-Black.ttf"  # 全量字体
+output_file = "dist/NotoSerifSC-Black.ttf"  # 基础字符集
 
 used_chars = "教育部供需对接就业育人项目"  # 读取用到的字符
 
