@@ -8,7 +8,7 @@ import json
 # 配置
 font_family = "YSBiaoTiHei"  # 字体族名称
 input_dir = "dist"
-css_file = os.path.join(input_dir, "font.css")
+css_file = os.path.join(input_dir, "ysbth-font.css")
 font_info_file = os.path.join(input_dir, "font_info.json")
 
 # 加载字体信息

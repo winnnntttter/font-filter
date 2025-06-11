@@ -12,7 +12,7 @@ import json
 input_font = "src/ysbth.ttf"  # 输入字体文件
 output_dir = "dist"           # 输出目录
 common_chars_file = "常用字符3500.txt"  # 常用字符文件
-font_prefix = "font"          # 输出字体文件名前缀
+font_prefix = "ysbth-font"          # 输出字体文件名前缀
 target_count = 10             # 目标分割数量
 target_size_kb = 100          # 目标每个文件大小(KB)
 

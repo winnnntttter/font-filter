@@ -33,9 +33,6 @@ try:
     # 步骤3：生成CSS文件
     run_script("generate_css.py")
 
-    # 步骤4：生成测试HTML文件
-    run_script("generate_html.py")
-
     print("="*50)
     print("所有处理完成！字体分割和文件生成已成功。")
     print(f"生成的文件位于 {os.path.abspath('dist')} 目录")

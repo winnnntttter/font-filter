@@ -1,8 +1,8 @@
 [
   {
-    "file": "font1.ttf",
-    "woff": "font1.woff",
-    "woff2": "font1.woff2",
+    "file": "ysbth-font1.ttf",
+    "woff": "ysbth-font1.woff",
+    "woff2": "ysbth-font1.woff2",
     "unicode_range": [
       "U+0021-0022",
       "U+0022",
@@ -767,9 +767,9 @@
     "char_count": 1198
   },
   {
-    "file": "font2.ttf",
-    "woff": "font2.woff",
-    "woff2": "font2.woff2",
+    "file": "ysbth-font2.ttf",
+    "woff": "ysbth-font2.woff",
+    "woff2": "ysbth-font2.woff2",
     "unicode_range": [
       "U+60A6",
       "U+60A8",
@@ -1676,9 +1676,9 @@
     "char_count": 1198
   },
   {
-    "file": "font3.ttf",
-    "woff": "font3.woff",
-    "woff2": "font3.woff2",
+    "file": "ysbth-font3.ttf",
+    "woff": "ysbth-font3.woff",
+    "woff2": "ysbth-font3.woff2",
     "unicode_range": [
       "U+7AFF",
       "U+7B06",
@@ -2544,9 +2544,9 @@
     "char_count": 1196
   },
   {
-    "file": "font4.ttf",
-    "woff": "font4.woff",
-    "woff2": "font4.woff2",
+    "file": "ysbth-font4.ttf",
+    "woff": "ysbth-font4.woff",
+    "woff2": "ysbth-font4.woff2",
     "unicode_range": [
       "U+0000",
       "U+0002",
@@ -2851,9 +2851,9 @@
     "char_count": 519
   },
   {
-    "file": "font5.ttf",
-    "woff": "font5.woff",
-    "woff2": "font5.woff2",
+    "file": "ysbth-font5.ttf",
+    "woff": "ysbth-font5.woff",
+    "woff2": "ysbth-font5.woff2",
     "unicode_range": [
       "U+0099-009C",
       "U+8069",
@@ -3232,9 +3232,9 @@
     "char_count": 519
   },
   {
-    "file": "font6.ttf",
-    "woff": "font6.woff",
-    "woff2": "font6.woff2",
+    "file": "ysbth-font6.ttf",
+    "woff": "ysbth-font6.woff",
+    "woff2": "ysbth-font6.woff2",
     "unicode_range": [
       "U+91B4-91B5",
       "U+91BA",
@@ -3533,9 +3533,9 @@
     "char_count": 519
   },
   {
-    "file": "font7.ttf",
-    "woff": "font7.woff",
-    "woff2": "font7.woff2",
+    "file": "ysbth-font7.ttf",
+    "woff": "ysbth-font7.woff",
+    "woff2": "ysbth-font7.woff2",
     "unicode_range": [
       "U+2010",
       "U+2013-2016",
@@ -3937,9 +3937,9 @@
     "char_count": 519
   },
   {
-    "file": "font8.ttf",
-    "woff": "font8.woff",
-    "woff2": "font8.woff2",
+    "file": "ysbth-font8.ttf",
+    "woff": "ysbth-font8.woff",
+    "woff2": "ysbth-font8.woff2",
     "unicode_range": [
       "U+59AE-59AF",
       "U+59B2",
@@ -4384,9 +4384,9 @@
     "char_count": 519
   },
   {
-    "file": "font9.ttf",
-    "woff": "font9.woff",
-    "woff2": "font9.woff2",
+    "file": "ysbth-font9.ttf",
+    "woff": "ysbth-font9.woff",
+    "woff2": "ysbth-font9.woff2",
     "unicode_range": [
       "U+683E",
       "U+6840-6841",
@@ -4822,9 +4822,9 @@
     "char_count": 519
   },
   {
-    "file": "font10.ttf",
-    "woff": "font10.woff",
-    "woff2": "font10.woff2",
+    "file": "ysbth-font10.ttf",
+    "woff": "ysbth-font10.woff",
+    "woff2": "ysbth-font10.woff2",
     "unicode_range": [
       "U+75A5",
       "U+75AC",
