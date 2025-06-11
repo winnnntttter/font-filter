@@ -10,12 +10,18 @@ pip3 --version 同上
 
 
 
-py convert.py  报错
-
-
 直接用下面两个
-fontforge -script filter.py
+fontforge -script filter-fontforge.py
 
 <!-- pip install fontTools -->
 <!-- pip install brotli -->
 python toWoff.py
+
+
+或者
+
+使用默认参数：python filter.py
+指定字符集：python [filter.py](http://_vscodecontentref_/2) -c "你好世界"
+从文件读取字符集：python [filter.py](http://_vscodecontentref_/3) -f characters.txt
+指定输入输出文件：python [filter.py](http://_vscodecontentref_/4) -i input.ttf -o output.ttf
+
