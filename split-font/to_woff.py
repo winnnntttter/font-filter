@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 # 转换TTF字体为WOFF和WOFF2格式
 
 import os

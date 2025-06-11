@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# 主脚本，用于运行整个字体分割和生成流程
-
 import os
 import sys
 import subprocess
