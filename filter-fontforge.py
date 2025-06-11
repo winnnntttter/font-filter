@@ -2,7 +2,7 @@ import os
 # from fontTools.ttLib import TTFont
 
 input_file = "src/ysbth.ttf"  # 全量字体
-output_file = "dist/ysbth.ttf"  # 基础字符集
+output_file = "dist/ysbth.ttf"  # 提取后的字体
 
 used_chars = "如何结合国家战略及区域发展选专业？"  # 读取用到的字符
 

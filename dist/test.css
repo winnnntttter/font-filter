@@ -1,4 +1,4 @@
-/* @font-face {
+@font-face {
     font-family: 'YouSheBiaoTiHei';
     font-style: normal;
     font-weight: 400;
@@ -9,8 +9,8 @@
 }
 .test {
     font-family: 'YouSheBiaoTiHei';
-} */
-@font-face {
+}
+/* @font-face {
     font-family: 'Noto Serif SC Black';
     font-style: normal;
     font-weight: 400;
@@ -21,4 +21,4 @@
 }
 .test {
     font-family: 'Noto Serif SC Black';
-}
+} */

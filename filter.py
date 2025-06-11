@@ -11,51 +11,12 @@ from fontTools.ttLib import TTFont
 from fontTools.subset import Subsetter
 import logging
 
-# 配置日志 - 如果不需要详细日志，可以将级别设置为WARNING
-logging.basicConfig(level=logging.INFO)
+input_file = "src/ysbth.ttf"  # 全量字体
+output_file = "dist/ysbth.ttf"  # 提取后的字体
 
-# 添加命令行参数支持
-import argparse
+used_chars = "如何结合国家战略及区域发展选专业？"  # 读取用到的字符
 
-def parse_args():
-    parser = argparse.ArgumentParser(description='生成字体子集')
-    parser.add_argument('--input', '-i', type=str, default="src/NotoSerifSC-Black.ttf",
-                        help='输入字体文件路径')
-    parser.add_argument('--output', '-o', type=str, default="dist/NotoSerifSC-Black.ttf",
-                        help='输出字体文件路径')
-    parser.add_argument('--chars', '-c', type=str, default=None,
-                        help='要包含的字符，直接指定字符串')
-    parser.add_argument('--chars-file', '-f', type=str, default=None,
-                        help='要包含的字符，从文件读取')
-    return parser.parse_args()
-
-# 解析命令行参数
-args = parse_args()
-
-# 配置
-input_file = args.input
-output_file = args.output
-
-# 确定要保留的字符
-used_chars = ""
-if args.chars:
-    # 如果在命令行指定了字符
-    used_chars = args.chars
-elif args.chars_file:
-    # 如果指定了字符文件
-    try:
-        with open(args.chars_file, 'r', encoding='utf-8') as f:
-            used_chars = f.read()
-    except Exception as e:
-        print(f"读取字符文件时出错: {e}")
-        used_chars = "如何结合国家战略及区域发展选专业？"  # 使用默认字符
-else:
-    # 如果没有指定，使用默认字符
-    # used_chars = "如何结合国家战略及区域发展选专业？"
-    used_chars = "教育部供需对接就业育人项目"
-
-# 如果需要保留特定Unicode值的字符，可以这样添加
-# 例如，康熙部首"目"(U+2F6C)
+# unicode \u2F6C或者\u2F6D的也保留
 # used_chars += "\u2F6C\u319F"
 
 # 去重字符
