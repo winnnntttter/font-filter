@@ -7,6 +7,7 @@ import math
 from fontTools.ttLib import TTFont
 from fontTools.subset import Subsetter
 import json
+from collections import defaultdict
 
 # 配置参数
 input_font = "src/ysbth.ttf"  # 输入字体文件
@@ -36,34 +37,67 @@ for table in font['cmap'].tables:
 print(f"字体中共有 {len(all_unicodes)} 个字符")
 
 # 将所有字符分类
-ascii_unicodes = [u for u in all_unicodes if u <= 0x007F]  # ASCII字符（0-127）
+# 1. 基本ASCII（英文、数字、基本标点：这些几乎总是需要的）
+basic_ascii = [u for u in all_unicodes if 0x0020 <= u <= 0x007F]  # 空格到~
+
+# 2. 中文标点和常见符号
+chinese_punct = []
+punct_ranges = [
+    (0x3000, 0x303F),  # CJK符号和标点
+    (0xFF00, 0xFFEF),  # 全角字符
+    (0x2000, 0x206F),  # 常用标点
+    (0x25A0, 0x25FF),  # 几何图形
+]
+for start, end in punct_ranges:
+    chinese_punct.extend([u for u in all_unicodes if start <= u <= end])
+
+# 3. 常用汉字（按照unicode code point范围分组，保证相关汉字在一起）
 common_unicodes = [ord(char) for char in common_chars if ord(char) > 0x007F]
 common_unicodes = [u for u in common_unicodes if u in all_unicodes]
-other_unicodes = [u for u in all_unicodes if u > 0x007F and u not in common_unicodes]
 
-print(f"ASCII字符: {len(ascii_unicodes)} 个")
+# 根据Unicode码点的范围分组
+unicode_groups = defaultdict(list)
+for u in common_unicodes:
+    # 按每1000个码点一组进行分组
+    group_key = u // 1000
+    unicode_groups[group_key].append(u)
+
+# 提取分组的常用汉字
+grouped_common_chars = []
+for group_key in sorted(unicode_groups.keys()):
+    grouped_common_chars.append(unicode_groups[group_key])
+
+# 4. 其他Unicode字符（非ASCII，非中文标点，非常用汉字）
+other_unicodes = [u for u in all_unicodes if u > 0x007F and u not in common_unicodes and u not in chinese_punct]
+
+print(f"基本ASCII: {len(basic_ascii)} 个")
+print(f"中文标点和符号: {len(chinese_punct)} 个")
 print(f"常用汉字: {len(common_unicodes)} 个")
 print(f"其他字符: {len(other_unicodes)} 个")
 
 # 准备分块
 chunks = []
 
-# 第1块：所有ASCII字符
-chunks.append(ascii_unicodes)
+# 第1块：基本ASCII + 中文标点（这些几乎总是需要的）
+first_block = basic_ascii + chinese_punct
+chunks.append(first_block)
 
-# 剩余的块：先常用汉字，再其他汉字
-chars_per_common_font = math.ceil(len(common_unicodes) / (target_count * 0.6 - 1))  # 减1是因为第一块已经分配给ASCII
-chars_per_other_font = math.ceil(len(other_unicodes) / (target_count * 0.4))
+# 更平衡的分配策略
+# 所有字符（基本ASCII和中文标点已经在第一个文件中）
+all_remaining_chars = common_unicodes + other_unicodes
 
-# 分割常用字符
-for i in range(0, len(common_unicodes), chars_per_common_font):
-    chunks.append(common_unicodes[i:i + chars_per_common_font])
+# 计算每个文件的大致字符数量
+total_remaining_chars = len(all_remaining_chars)
+files_needed = target_count - 1  # 第一个文件已用于ASCII和标点
+chars_per_file = total_remaining_chars // files_needed + 1
 
-# 分割其他字符
-for i in range(0, len(other_unicodes), chars_per_other_font):
-    chunks.append(other_unicodes[i:i + chars_per_other_font])
+# 均匀分配所有剩余字符
+for i in range(0, total_remaining_chars, chars_per_file):
+    chunk = all_remaining_chars[i:i + chars_per_file]
+    if chunk:  # 确保块不为空
+        chunks.append(chunk)
 
-# 限制块数量不超过目标数量
+# 如果产生的分块超过了目标数量，合并最后几个块
 if len(chunks) > target_count:
     # 合并最后的块
     last_chunks = chunks[target_count-1:]
@@ -88,9 +122,7 @@ for i, chunk in enumerate(chunks):
 
     # 输出文件名
     output_name = f"{font_prefix}{i+1}.ttf"
-    output_path = os.path.join(output_dir, output_name)
-
-    # 保存子集字体
+    output_path = os.path.join(output_dir, output_name)    # 保存子集字体
     font_subset.save(output_path)
 
     # 计算unicode范围，用于CSS的unicode-range
