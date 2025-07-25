@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'HappyZcool-2016';
+    font-style: normal;
+    font-weight: 400;
+    src:
+        url(./zkhl.woff2) format('woff2'),
+        url(./zkhl.woff) format('woff'),
+        url(./zkhl.ttf) format('truetype');
+}
+.test {
+    font-family: 'HappyZcool-2016';
+}
