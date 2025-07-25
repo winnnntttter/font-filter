@@ -1,10 +1,10 @@
 import os
 # from fontTools.ttLib import TTFont
 
-input_file = "src/SourceHanSerifCN-Regular.ttf"  # 全量字体
-output_file = "dist/SourceHanSerifCN-Regular.ttf"  # 基础字符集
+input_file = "src/simkai.ttf"  # 全量字体
+output_file = "dist/simkai.ttf"  # 基础字符集
 
-used_chars = "教育部供需对接就业育人项目该项目通过第X期教育部供需对接就业育人项目结题验收，特发此证。 该项目入选教育部供需对接就业育人项目第X期立项项目，特发此证。1234567890一二三四五六七八九十零"  # 读取用到的字符
+used_chars = "通过结题验收该项目入选教育部供需对接就业育人项目第X期立项项目，特发此证教育部供需对接就业育人项目该项目通过第X期教育部供需对接就业育人项目结题验收，特发此证。 该项目入选教育部供需对接就业育人项目第X期立项项目，特发此证。1234567890一二三四五六七八九十零"  # 读取用到的字符
 
 # unicode \u2F6C或者\u2F6D的也保留
 # used_chars += "\u2F6C\u319F"
