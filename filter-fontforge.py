@@ -1,10 +1,10 @@
 import os
 # from fontTools.ttLib import TTFont
 
-input_file = "src/ysbth.ttf"  # 全量字体
-output_file = "dist/ysbth.ttf"  # 提取后的字体
+input_file = "src/DingTalk-JinBuTi.ttf"  # 全量字体
+output_file = "dist/DingTalk-JinBuTi.ttf"  # 提取后的字体
 
-used_chars = "如何结合国家战略及区域发展选专业？"  # 读取用到的字符
+used_chars = "网络评审现场赛"  # 读取用到的字符
 
 # unicode \u2F6C或者\u2F6D的也保留
 # used_chars += "\u2F6C\u319F"
