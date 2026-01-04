@@ -4,7 +4,7 @@ import os
 input_file = "src/DingTalk-JinBuTi.ttf"  # 全量字体
 output_file = "dist/DingTalk-JinBuTi.ttf"  # 提取后的字体
 
-used_chars = "网络评审现场赛"  # 读取用到的字符
+used_chars = "网络评审现场赛0123456789抽题中取"  # 读取用到的字符
 
 # unicode \u2F6C或者\u2F6D的也保留
 # used_chars += "\u2F6C\u319F"
