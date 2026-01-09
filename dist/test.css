@@ -1,19 +1,25 @@
 @font-face {
     /* font-family: 'DingTalk JinBuTi'; */
     font-family: 'AlibabaPuHuiTi-3-55-Regular';
-    font-style: normal;
-    font-weight: 400;
+    /* font-style: normal; */
+    /* font-weight: 400; */
     src:
         /* url(./DingTalk-JinBuTi.woff2) format('woff2'), */
         /* url(./DingTalk-JinBuTi.woff) format('woff'), */
         /* url(./ali-bold.ttf) format('truetype'); */
-        /* url(./AlibabaPuHuiTi-3-55-Regular.ttf) format('truetype'); */
+        url(./AlibabaPuHuiTi-3-55-Regular.ttf) format('truetype');
         /* url('https://fonts.alibabadesign.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-RegularL3/AlibabaPuHuiTi-3-55-RegularL3.ttf') format('truetype'); */
-        url('./AlibabaPuHuiTi-3-55-RegularL3') format('truetype');
+        /* url('./AlibabaPuHuiTi-3-55-RegularL3') format('truetype'); */
 }
 .test {
     /* font-family: 'DingTalk JinBuTi'; */
     font-family: 'AlibabaPuHuiTi-3-55-Regular';
+
+    /* 禁用字距调整和OpenType特性，实现真正的等宽数字 */
+    font-feature-settings: 'kern' 0, 'liga' 0, 'calt' 0;
+    font-kerning: none;
+    /* 使用表格数字（等宽数字）如果字体支持 */
+    font-variant-numeric: tabular-nums;
 }
 /* @font-face {
     font-family: 'Noto Serif SC Black';

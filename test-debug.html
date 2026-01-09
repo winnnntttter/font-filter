@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>字体等宽测试</title>
+    <style>
+        @font-face {
+            font-family: 'AlibabaPuHuiTi-3-55-Regular';
+            src: url(./dist/AlibabaPuHuiTi-3-55-Regular.ttf) format('truetype');
+        }
+
+        body {
+            padding: 40px;
+            font-size: 20px;
+        }
+
+        .container {
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        /* 默认样式 */
+        .default {
+            font-family: 'AlibabaPuHuiTi-3-55-Regular';
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* 禁用所有OpenType特性 */
+        .no-features {
+            font-family: 'AlibabaPuHuiTi-3-55-Regular';
+            font-feature-settings: 'kern' 0, 'liga' 0, 'calt' 0, 'clig' 0;
+            font-kerning: none;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* 使用表格数字 */
+        .tabular {
+            font-family: 'AlibabaPuHuiTi-3-55-Regular';
+            font-variant-numeric: tabular-nums;
+            font-feature-settings: 'tnum' 1;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* 组合方案：禁用特性 + 表格数字 */
+        .combined {
+            font-family: 'AlibabaPuHuiTi-3-55-Regular';
+            font-feature-settings: 'kern' 0, 'liga' 0, 'calt' 0, 'tnum' 1;
+            font-kerning: none;
+            font-variant-numeric: tabular-nums;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* 使用等宽字体对比 */
+        .monospace {
+            font-family: 'Courier New', monospace;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* 表格对齐测试 */
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: right;
+        }
+
+        .label {
+            background: #f5f5f5;
+            font-weight: bold;
+            font-size: 14px;
+            color: #666;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #333;
+        }
+
+        .char-test {
+            display: inline-block;
+            border: 1px solid #eee;
+            margin: 2px;
+            padding: 2px 5px;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>阿里巴巴普惠体等宽数字测试</h1>
+
+    <h2>1. 默认渲染（无特殊设置）</h2>
+    <div class="default">
+        <div>11.1111</div>
+        <div>99.9999</div>
+        <div>12.3456</div>
+    </div>
+
+    <h2>2. 禁用所有OpenType特性</h2>
+    <div class="no-features">
+        <div>11.1111</div>
+        <div>99.9999</div>
+        <div>12.3456</div>
+    </div>
+
+    <h2>3. 使用表格数字（font-variant-numeric: tabular-nums）</h2>
+    <div class="tabular">
+        <div>11.1111</div>
+        <div>99.9999</div>
+        <div>12.3456</div>
+    </div>
+
+    <h2>4. 组合方案：禁用特性 + 表格数字</h2>
+    <div class="combined">
+        <div>11.1111</div>
+        <div>99.9999</div>
+        <div>12.3456</div>
+    </div>
+
+    <h2>5. 等宽字体对比（Courier New）</h2>
+    <div class="monospace">
+        <div>11.1111</div>
+        <div>99.9999</div>
+        <div>12.3456</div>
+    </div>
+
+    <h2>6. 表格对齐测试</h2>
+    <table>
+        <tr class="default">
+            <td class="label">默认</td>
+            <td>11.1111</td>
+            <td>99.9999</td>
+            <td>12.3456</td>
+        </tr>
+        <tr class="combined">
+            <td class="label">组合方案</td>
+            <td>11.1111</td>
+            <td>99.9999</td>
+            <td>12.3456</td>
+        </tr>
+    </table>
+
+    <h2>7. 单字符宽度测试（使用组合方案）</h2>
+    <div class="combined">
+        <div>
+            数字0-9：
+            <span class="char-test">0</span>
+            <span class="char-test">1</span>
+            <span class="char-test">2</span>
+            <span class="char-test">3</span>
+            <span class="char-test">4</span>
+            <span class="char-test">5</span>
+            <span class="char-test">6</span>
+            <span class="char-test">7</span>
+            <span class="char-test">8</span>
+            <span class="char-test">9</span>
+        </div>
+        <div style="margin-top: 10px;">
+            小数点：<span class="char-test">.</span>
+            逗号：<span class="char-test">,</span>
+        </div>
+    </div>
+
+    <h2>8. 原始测试内容</h2>
+    <div class="combined" style="white-space: pre-line;">
+如何结合看网络评审和现场赛
+教育部供需对接就业育人项目
+其他文字
+1234567890
+抽题中取
+11.1111
+99.9999
+    </div>
+
+    <script>
+        // 测量字符宽度
+        window.onload = function() {
+            const testDiv = document.createElement('div');
+            testDiv.className = 'combined';
+            testDiv.style.position = 'absolute';
+            testDiv.style.visibility = 'hidden';
+            testDiv.style.fontSize = '20px';
+            document.body.appendChild(testDiv);
+
+            const chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.', ','];
+            console.log('=== 字符宽度测量 ===');
+            chars.forEach(char => {
+                testDiv.textContent = char;
+                const width = testDiv.offsetWidth;
+                console.log(`字符 "${char}": ${width}px`);
+            });
+
+            // 测量组合
+            const combos = ['1.', '9.', '11.1111', '99.9999'];
+            console.log('=== 组合宽度测量 ===');
+            combos.forEach(combo => {
+                testDiv.textContent = combo;
+                const width = testDiv.offsetWidth;
+                console.log(`"${combo}": ${width}px`);
+            });
+
+            document.body.removeChild(testDiv);
+        };
+    </script>
+</body>
+</html>
