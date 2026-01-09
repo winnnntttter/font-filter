@@ -1,14 +1,19 @@
 @font-face {
-    font-family: 'DingTalk JinBuTi';
+    /* font-family: 'DingTalk JinBuTi'; */
+    font-family: 'AlibabaPuHuiTi-3-55-Regular';
     font-style: normal;
     font-weight: 400;
     src:
-        url(./DingTalk-JinBuTi.woff2) format('woff2'),
-        url(./DingTalk-JinBuTi.woff) format('woff'),
-        url(./DingTalk-JinBuTi.ttf) format('truetype');
+        /* url(./DingTalk-JinBuTi.woff2) format('woff2'), */
+        /* url(./DingTalk-JinBuTi.woff) format('woff'), */
+        /* url(./ali-bold.ttf) format('truetype'); */
+        /* url(./AlibabaPuHuiTi-3-55-Regular.ttf) format('truetype'); */
+        /* url('https://fonts.alibabadesign.com/AlibabaPuHuiTi-3/AlibabaPuHuiTi-3-55-RegularL3/AlibabaPuHuiTi-3-55-RegularL3.ttf') format('truetype'); */
+        url('./AlibabaPuHuiTi-3-55-RegularL3') format('truetype');
 }
 .test {
-    font-family: 'DingTalk JinBuTi';
+    /* font-family: 'DingTalk JinBuTi'; */
+    font-family: 'AlibabaPuHuiTi-3-55-Regular';
 }
 /* @font-face {
     font-family: 'Noto Serif SC Black';
